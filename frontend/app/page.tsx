@@ -8,7 +8,6 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { ArrowRight, PieChart, TrendingUp, Zap } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -58,12 +57,9 @@ export default function Home() {
 					</CardHeader>
 					<CardContent>
 						<Link href="/strategies">
-							<Button
-								className="w-full"
-								variant="outline"
-								disabled
-							>
-								Coming Soon
+							<Button className="w-full">
+								Explore Strategies{" "}
+								<ArrowRight className="ml-2 h-4 w-4" />
 							</Button>
 						</Link>
 					</CardContent>

@@ -13,6 +13,17 @@ from app.schemas.common import (
     ErrorResponse,
     HealthCheckResponse,
 )
+from app.schemas.strategy import (
+    StrategyType,
+    StrategyInfo,
+    TOUParameters,
+    DynamicParameters,
+    StrategyExecutionRequest,
+    StrategyExecutionResponse,
+    PricePoint,
+    HouseholdCost,
+    FairnessMetrics,
+)
 
 __all__ = [
     "DataIngestionRequest",
@@ -22,4 +33,13 @@ __all__ = [
     "ConsumptionRecordResponse",
     "ErrorResponse",
     "HealthCheckResponse",
+    "StrategyType",
+    "StrategyInfo",
+    "TOUParameters",
+    "DynamicParameters",
+    "StrategyExecutionRequest",
+    "StrategyExecutionResponse",
+    "PricePoint",
+    "HouseholdCost",
+    "FairnessMetrics",
 ]

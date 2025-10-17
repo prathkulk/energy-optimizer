@@ -6,7 +6,7 @@ import logging
 
 from app.config import settings
 from app.database import init_db
-from app.api.v1 import data, health
+from app.api.v1 import data, health, strategies
 from app.middleware.error_handling import (
     app_exception_handler,
     validation_exception_handler,
@@ -54,6 +54,7 @@ app.add_exception_handler(Exception, generic_exception_handler)
 # Register routers
 app.include_router(data.router, prefix=settings.api_v1_prefix)
 app.include_router(health.router, prefix=settings.api_v1_prefix)
+app.include_router(strategies.router, prefix=settings.api_v1_prefix)
 
 
 @app.on_event("startup")
