@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///Users/prathameshkulkarni/preisenergie/frontend/app/page.tsx"],"sourcesContent":["import Image from \"next/image\";\n\nexport default function Home() {\n\treturn (\n\t\t<div className=\"space-y-8\">\n\t\t\t<div className=\"text-center space-y-4\">\n\t\t\t\t<h1 className=\"text-4xl font-bold tracking-tight\">\n\t\t\t\t\tEnergy Price Optimization Simulator\n\t\t\t\t</h1>\n\t\t\t\t<p className=\"text-xl text-gray-600 max-w-2xl mx-auto\">\n\t\t\t\t\tOptimize energy pricing strategies by balancing\n\t\t\t\t\tprofitability and fairness using real European energy\n\t\t\t\t\tconsumption data\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n"],"names":[],"mappings":";;;;;;AAEe,SAAS;IACvB,qBACC,8OAAC;QAAI,WAAU;kBACd,cAAA,8OAAC;YAAI,WAAU;;8BACd,8OAAC;oBAAG,WAAU;8BAAoC;;;;;;8BAGlD,8OAAC;oBAAE,WAAU;8BAA0C;;;;;;;;;;;;;;;;;AAQ3D","debugId":null}}]
+}
