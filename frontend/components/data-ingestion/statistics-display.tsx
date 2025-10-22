@@ -6,8 +6,8 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { DataIngestionResponse } from "@/lib/types";
+} from "../../components/ui/card";
+import { DataIngestionResponse } from "../../lib/types";
 import { CheckCircle2, Users, Calendar, Zap, TrendingUp } from "lucide-react";
 import { format } from "date-fns";
 

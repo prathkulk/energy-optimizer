@@ -1,7 +1,7 @@
 "use client";
 
-import { clearData, getDataSummary } from "@/lib/api";
-import { DataSummaryResponse } from "@/lib/types";
+import { clearData, getDataSummary } from "../../lib/api";
+import { DataSummaryResponse } from "../../lib/types";
 import { useEffect, useState } from "react";
 import {
 	Card,
@@ -9,11 +9,11 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
+} from "../../components/ui/card";
 import { Database, Loader2, RefreshCw, Trash2 } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "../../components/ui/alert";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
 import { format } from "date-fns";
 
 interface DataSummaryProps {

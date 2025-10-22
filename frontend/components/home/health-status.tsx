@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Card, CardContent } from "../../components/ui/card";
+import { Alert, AlertDescription } from "../../components/ui/alert";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
-import { checkHealth } from "@/lib/api";
-import { HealthCheckResponse } from "@/lib/types";
+import { checkHealth } from "../../lib/api";
+import { HealthCheckResponse } from "../../lib/types";
 
 export function HealthStatus() {
 	const [health, setHealth] = useState<HealthCheckResponse | null>(null);

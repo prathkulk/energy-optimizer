@@ -1,32 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/components/ui/select";
+} from "../../components/ui/select";
 import {
 	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+} from "../../components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
 import { Loader2, Download } from "lucide-react";
 import {
 	CountryCode,
 	COUNTRY_NAMES,
 	DataIngestionRequest,
 	DataIngestionResponse,
-} from "@/lib/types";
-import { ingestData } from "@/lib/api";
+} from "../../lib/types";
+import { ingestData } from "../../lib/api";
 import { format, subDays } from "date-fns";
 
 interface IngestionFormProps {
