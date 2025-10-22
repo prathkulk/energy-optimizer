@@ -24,7 +24,7 @@ export default function Home() {
 				</p>
 			</div>
 
-			<HealthStatus />
+			{/* <HealthStatus /> */}
 
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 				<Card className="hover:shadow-lg transition-shadow">

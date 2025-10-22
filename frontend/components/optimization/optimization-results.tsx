@@ -70,7 +70,6 @@ export function OptimizationResults({ results }: OptimizationResultsProps) {
 					{results.solver_runtime_seconds}s{getSolverStatusBadge()}
 				</AlertDescription>
 			</Alert>
-
 			{/* Optimization Summary */}
 			<Card>
 				<CardHeader>
@@ -127,10 +126,221 @@ export function OptimizationResults({ results }: OptimizationResultsProps) {
 					</div>
 				</CardContent>
 			</Card>
+			// Add this after the Optimization Summary card (around line 100):
+			{/* Cost Recovery Analysis */}
+			<Card>
+				<CardHeader>
+					<CardTitle>Cost Recovery Analysis</CardTitle>
+					<CardDescription>
+						Revenue vs. target with losses/profits breakdown
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<div className="space-y-4">
+						{/* Visual Progress Bar */}
+						<div className="space-y-2">
+							<div className="flex justify-between text-sm">
+								<span>Target Revenue</span>
+								<span className="font-semibold">
+									€
+									{results.cost_recovery_target.toLocaleString(
+										undefined,
+										{ maximumFractionDigits: 0 }
+									)}
+								</span>
+							</div>
 
+							<div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+								<div
+									className={`h-full transition-all ${
+										results.cost_recovery_percentage >= 100
+											? "bg-gradient-to-r from-green-500 to-green-600"
+											: "bg-gradient-to-r from-red-500 to-orange-500"
+									}`}
+									style={{
+										width: `${Math.min(
+											results.cost_recovery_percentage,
+											100
+										)}%`,
+									}}
+								/>
+								<div className="absolute inset-0 flex items-center justify-center">
+									<span className="text-sm font-bold text-white drop-shadow">
+										{results.cost_recovery_percentage.toFixed(
+											1
+										)}
+										%
+									</span>
+								</div>
+							</div>
+						</div>
+
+						{/* Revenue Breakdown */}
+						<div className="grid grid-cols-3 gap-4 mt-4">
+							<div className="text-center p-3 bg-gray-50 rounded-lg">
+								<p className="text-xs text-gray-600 mb-1">
+									Actual Revenue
+								</p>
+								<p className="text-lg font-bold text-blue-600">
+									€
+									{results.total_revenue.toLocaleString(
+										undefined,
+										{ maximumFractionDigits: 0 }
+									)}
+								</p>
+							</div>
+
+							{results.optimization_details.revenue_shortfall &&
+							results.optimization_details.revenue_shortfall >
+								0 ? (
+								<div className="text-center p-3 bg-red-50 rounded-lg border border-red-200">
+									<p className="text-xs text-red-600 mb-1">
+										💸 Loss (Shortfall)
+									</p>
+									<p className="text-lg font-bold text-red-600">
+										-€
+										{results.optimization_details.revenue_shortfall.toLocaleString(
+											undefined,
+											{ maximumFractionDigits: 0 }
+										)}
+									</p>
+									<p className="text-xs text-red-500 mt-1">
+										{(
+											(results.optimization_details
+												.revenue_shortfall /
+												results.cost_recovery_target) *
+											100
+										).toFixed(1)}
+										% under target
+									</p>
+								</div>
+							) : results.optimization_details.revenue_excess &&
+							  results.optimization_details.revenue_excess >
+									0 ? (
+								<div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+									<p className="text-xs text-green-600 mb-1">
+										💰 Profit (Excess)
+									</p>
+									<p className="text-lg font-bold text-green-600">
+										+€
+										{results.optimization_details.revenue_excess.toLocaleString(
+											undefined,
+											{ maximumFractionDigits: 0 }
+										)}
+									</p>
+									<p className="text-xs text-green-500 mt-1">
+										{(
+											(results.optimization_details
+												.revenue_excess /
+												results.cost_recovery_target) *
+											100
+										).toFixed(1)}
+										% over target
+									</p>
+								</div>
+							) : (
+								<div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+									<p className="text-xs text-blue-600 mb-1">
+										🎯 Perfect Balance
+									</p>
+									<p className="text-lg font-bold text-blue-600">
+										€0
+									</p>
+									<p className="text-xs text-blue-500 mt-1">
+										Exactly on target
+									</p>
+								</div>
+							)}
+
+							<div className="text-center p-3 bg-purple-50 rounded-lg">
+								<p className="text-xs text-purple-600 mb-1">
+									Recovery Rate
+								</p>
+								<p className="text-lg font-bold text-purple-600">
+									{results.cost_recovery_percentage.toFixed(
+										1
+									)}
+									%
+								</p>
+								<p className="text-xs text-purple-500 mt-1">
+									{results.cost_recovery_percentage >= 100
+										? "Above"
+										: "Below"}{" "}
+									target
+								</p>
+							</div>
+						</div>
+
+						{/* Mode Indicator */}
+						{results.optimization_details.mode && (
+							<div className="mt-4 p-3 bg-gray-50 rounded-lg border">
+								<div className="flex items-center justify-between">
+									<span className="text-sm font-medium">
+										Optimization Mode:
+									</span>
+									<span
+										className={`text-sm font-bold ${
+											results.optimization_details
+												.mode === "regulated"
+												? "text-blue-600"
+												: "text-orange-600"
+										}`}
+									>
+										{results.optimization_details.mode ===
+										"regulated"
+											? "🛡️ Regulated"
+											: "📈 Market"}
+									</span>
+								</div>
+								{results.optimization_details
+									.min_cost_recovery_pct && (
+									<p className="text-xs text-gray-600 mt-1">
+										Allowed range:{" "}
+										{
+											results.optimization_details
+												.min_cost_recovery_pct
+										}
+										% -{" "}
+										{
+											results.optimization_details
+												.max_cost_recovery_pct
+										}
+										%
+									</p>
+								)}
+							</div>
+						)}
+
+						{/* Interpretation */}
+						<Alert
+							className={
+								results.cost_recovery_percentage < 95
+									? "border-red-200 bg-red-50"
+									: results.cost_recovery_percentage > 110
+									? "border-green-200 bg-green-50"
+									: "border-blue-200 bg-blue-50"
+							}
+						>
+							<AlertTitle className="text-sm font-semibold">
+								{results.cost_recovery_percentage < 95
+									? "⚠️ Operating at Loss"
+									: results.cost_recovery_percentage > 110
+									? "✅ Strong Profitability"
+									: "✓ Healthy Cost Recovery"}
+							</AlertTitle>
+							<AlertDescription className="text-xs mt-1">
+								{results.cost_recovery_percentage < 95
+									? "This pricing strategy results in losses. In market mode, this may be acceptable for competitive positioning or fairness goals."
+									: results.cost_recovery_percentage > 110
+									? "This pricing strategy generates significant profit above cost recovery. Ensure this aligns with your fairness and regulatory requirements."
+									: "This pricing strategy recovers costs effectively while balancing fairness and profitability objectives."}
+							</AlertDescription>
+						</Alert>
+					</div>
+				</CardContent>
+			</Card>
 			{/* Reuse Strategy Results Components */}
 			<MetricsComparisonCard results={strategyFormatted as any} />
-
 			{/* Tabs for Charts and Details */}
 			<Tabs defaultValue="charts" className="w-full">
 				<TabsList className="grid w-full grid-cols-3">

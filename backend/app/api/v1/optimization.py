@@ -60,37 +60,37 @@ async def get_optimization_presets() -> List[OptimizationPreset]:
     """
     presets = [
         OptimizationPreset(
-            name="Maximum Fairness",
-            description="Prioritize equal costs across all households (Gini ≈ 0)",
+            name="Maximum Fairness (Regulated)",
+            description="Prioritize equal costs, must meet 100% cost recovery",
             fairness_weight=1.0,
             profit_weight=0.0
         ),
         OptimizationPreset(
-            name="Balanced",
-            description="Equal balance between fairness and profitability",
+            name="Balanced (Regulated)",
+            description="Equal balance between fairness and profitability, 100%+ recovery",
             fairness_weight=0.5,
             profit_weight=0.5
         ),
         OptimizationPreset(
-            name="Maximum Revenue",
-            description="Prioritize revenue generation with minimal fairness constraint",
+            name="Maximum Revenue (Regulated)",
+            description="Prioritize revenue generation, 100%+ recovery guaranteed",
             fairness_weight=0.2,
             profit_weight=0.8
         ),
         OptimizationPreset(
-            name="Fair with Revenue Focus",
-            description="Good fairness while optimizing revenue",
+            name="Fair Market Pricing",
+            description="Market mode: Balance fairness with flexible cost recovery (85-120%)",
+            fairness_weight=0.7,
+            profit_weight=0.3
+        ),
+        OptimizationPreset(
+            name="Competitive Market",
+            description="Market mode: Accept potential losses for competitiveness (90-115%)",
             fairness_weight=0.6,
             profit_weight=0.4
         ),
-        OptimizationPreset(
-            name="Revenue with Fair Constraint",
-            description="Revenue focus with fairness as constraint",
-            fairness_weight=0.4,
-            profit_weight=0.6
-        ),
     ]
-
+    
     return presets
 
 
@@ -181,7 +181,10 @@ async def run_optimization(
             profit_weight=request.profit_weight,
             min_price=request.min_price,
             max_price=request.max_price,
-            solver_timeout=request.solver_timeout
+            solver_timeout=request.solver_timeout,
+            mode=request.mode.value,  # NEW
+            min_cost_recovery_pct=request.min_cost_recovery_pct,  # NEW
+            max_cost_recovery_pct=request.max_cost_recovery_pct   # NEW
         )
 
         pricing_df, optimization_metrics = optimizer.optimize()
