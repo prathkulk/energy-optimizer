@@ -1,6 +1,6 @@
 "use client";
 
-import { TooltipProps } from 'recharts';
+import { TooltipProps } from "recharts";
 import {
 	Card,
 	CardContent,
@@ -43,6 +43,18 @@ export function HouseholdDistributionChart({
 		const numBins = 20;
 		const binSize = (maxCost - minCost) / numBins;
 
+		// Handle edge case where all costs are the same
+		if (binSize === 0) {
+			return [
+				{
+					binStart: minCost,
+					binEnd: minCost,
+					count: costs.length,
+					label: `€${minCost.toFixed(4)}`,
+				},
+			];
+		}
+
 		const bins = Array.from({ length: numBins }, (_, i) => ({
 			binStart: minCost + i * binSize,
 			binEnd: minCost + (i + 1) * binSize,
@@ -50,12 +62,11 @@ export function HouseholdDistributionChart({
 			label: `€${(minCost + i * binSize).toFixed(4)}`,
 		}));
 
-		// Fill bins
+		// Fill bins - fix the index calculation
 		costs.forEach((cost) => {
-			const binIndex = Math.min(
-				Math.floor((cost - minCost) / binSize),
-				numBins - 1
-			);
+			let binIndex = Math.floor((cost - minCost) / binSize);
+			// Clamp to valid range [0, numBins - 1]
+			binIndex = Math.min(Math.max(0, binIndex), numBins - 1);
 			bins[binIndex].count++;
 		});
 

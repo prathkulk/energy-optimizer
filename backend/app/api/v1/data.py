@@ -95,10 +95,17 @@ async def ingest_data(
         stats = _calculate_statistics(household_df)
         
         # Calculate date range info
+        min_timestamp = household_df['timestamp'].min()
+        max_timestamp = household_df['timestamp'].max()
+        
+        # Calculate actual duration in hours (not number of timestamps)
+        duration = max_timestamp - min_timestamp  
+        total_hours = int(duration.total_seconds() / 3600)
+        
         date_range = DateRange(
-            start=household_df['timestamp'].min(),
-            end=household_df['timestamp'].max(),
-            total_hours=household_df['timestamp'].nunique()
+            start=min_timestamp,
+            end=max_timestamp,
+            total_hours=total_hours  # This is actual duration, not count of timestamps
         )
         
         ingestion_time = time.time() - start_time

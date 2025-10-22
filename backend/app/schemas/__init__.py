@@ -42,4 +42,7 @@ __all__ = [
     "PricePoint",
     "HouseholdCost",
     "FairnessMetrics",
+    "OptimizationRequest",
+    "OptimizationResponse",
+    "OptimizationPreset",
 ]

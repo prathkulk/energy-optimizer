@@ -3,25 +3,33 @@ import pandas as pd
 from typing import Dict, List, Tuple
 
 def calculate_gini_coefficient(values: np.ndarray) -> float:
-    if (len(values) == 0.0):
+    if len(values) == 0:
         return 0.0
-
+    
+    # Remove any NaN or infinite values
     values = values[np.isfinite(values)]
-
-    if (len(values) == 0.0):
+    
+    if len(values) == 0:
         return 0.0
-
+    
+    # Check if all values are the same (perfect equality)
+    if np.std(values) == 0:
+        return 0.0  # Perfect equality
+    
+    # Sort values
     sorted_values = np.sort(values)
     n = len(values)
-
+    
+    # Calculate cumulative sum
     cumsum = np.cumsum(sorted_values)
-
-    if cumsum[-1] == 0:
+    
+    # Gini formula: (2 * sum(i * x_i)) / (n * sum(x_i)) - (n + 1) / n
+    if cumsum[-1] == 0:  # All values are zero
         return 0.0
-
-    gini = (2 * np.sum((np.arange(1, n + 1)) * sorted_values)) / (n * cumsum[-1])   
-
-    return max(0.0, min(1.0, gini))
+    
+    gini = (2 * np.sum((np.arange(1, n + 1)) * sorted_values)) / (n * cumsum[-1]) - (n + 1) / n
+    
+    return max(0.0, min(1.0, gini))  # Clamp to [0, 1]
 
 def calculate_coefficient_of_variation(values: np.ndarray) -> float:
     if len(values) == 0:

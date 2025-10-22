@@ -76,12 +76,9 @@ export default function Home() {
 					</CardHeader>
 					<CardContent>
 						<Link href="/optimization">
-							<Button
-								className="w-full"
-								variant="outline"
-								disabled
-							>
-								Coming Soon
+							<Button className="w-full">
+								Optimize Now{" "}
+								<ArrowRight className="ml-2 h-4 w-4" />
 							</Button>
 						</Link>
 					</CardContent>

@@ -24,7 +24,7 @@ class CountryCode(str, Enum):
 
 class DataIngestionRequest(BaseModel):
     """Request schema for data ingestion endpoint."""
-    
+
     country_code: CountryCode = Field(
         ...,
         description="Two-letter country code"
@@ -43,7 +43,7 @@ class DataIngestionRequest(BaseModel):
         le=1000,
         description="Number of synthetic households to create"
     )
-    
+
     @field_validator('end_date')
     @classmethod
     def validate_date_range(cls, end_date: datetime, info) -> datetime:
@@ -52,7 +52,7 @@ class DataIngestionRequest(BaseModel):
         if start_date and end_date <= start_date:
             raise ValueError("end_date must be after start_date")
         return end_date
-    
+
     model_config = {
         "json_schema_extra": {
             "examples": [
@@ -67,16 +67,30 @@ class DataIngestionRequest(BaseModel):
     }
 
 
+class DateRange(BaseModel):
+    """Date range information."""
+
+    start: datetime
+    end: datetime
+    total_hours: int  # This should represent duration, not count of records
+
+
 class ConsumptionStatistics(BaseModel):
     """Statistics about consumption data."""
-    
-    mean_consumption: float = Field(..., description="Mean consumption in kWh per hour")
-    median_consumption: float = Field(..., description="Median consumption in kWh per hour")
-    std_deviation: float = Field(..., description="Standard deviation of consumption")
-    min_consumption: float = Field(..., description="Minimum consumption value")
-    max_consumption: float = Field(..., description="Maximum consumption value")
-    total_consumption: float = Field(..., description="Total consumption across all records")
-    
+
+    mean_consumption: float = Field(...,
+                                    description="Mean consumption in kWh per hour")
+    median_consumption: float = Field(...,
+                                      description="Median consumption in kWh per hour")
+    std_deviation: float = Field(...,
+                                 description="Standard deviation of consumption")
+    min_consumption: float = Field(...,
+                                   description="Minimum consumption value")
+    max_consumption: float = Field(...,
+                                   description="Maximum consumption value")
+    total_consumption: float = Field(...,
+                                     description="Total consumption across all records")
+
     model_config = {
         "json_schema_extra": {
             "examples": [
@@ -95,7 +109,7 @@ class ConsumptionStatistics(BaseModel):
 
 class DateRange(BaseModel):
     """Date range information."""
-    
+
     start: datetime = Field(..., description="Start datetime")
     end: datetime = Field(..., description="End datetime")
     total_hours: int = Field(..., description="Total hours in range")
@@ -103,16 +117,20 @@ class DateRange(BaseModel):
 
 class DataIngestionResponse(BaseModel):
     """Response schema for data ingestion endpoint."""
-    
+
     status: str = Field(..., description="Ingestion status (success/failed)")
     message: str = Field(..., description="Status message")
     total_records: int = Field(..., description="Total records ingested")
-    unique_households: int = Field(..., description="Number of unique households")
+    unique_households: int = Field(...,
+                                   description="Number of unique households")
     country: str = Field(..., description="Country code")
-    date_range: DateRange = Field(..., description="Date range of ingested data")
-    statistics: ConsumptionStatistics = Field(..., description="Consumption statistics")
-    ingestion_time_seconds: float = Field(..., description="Time taken for ingestion")
-    
+    date_range: DateRange = Field(...,
+                                  description="Date range of ingested data")
+    statistics: ConsumptionStatistics = Field(
+        ..., description="Consumption statistics")
+    ingestion_time_seconds: float = Field(...,
+                                          description="Time taken for ingestion")
+
     model_config = {
         "json_schema_extra": {
             "examples": [
@@ -144,13 +162,17 @@ class DataIngestionResponse(BaseModel):
 
 class DataSummaryResponse(BaseModel):
     """Response schema for data summary endpoint."""
-    
+
     total_records: int = Field(..., description="Total records in database")
-    unique_households: int = Field(..., description="Number of unique households")
-    countries: List[str] = Field(..., description="List of countries with data")
-    date_range: Optional[DateRange] = Field(None, description="Overall date range")
-    statistics: Optional[ConsumptionStatistics] = Field(None, description="Overall statistics")
-    
+    unique_households: int = Field(...,
+                                   description="Number of unique households")
+    countries: List[str] = Field(...,
+                                 description="List of countries with data")
+    date_range: Optional[DateRange] = Field(
+        None, description="Overall date range")
+    statistics: Optional[ConsumptionStatistics] = Field(
+        None, description="Overall statistics")
+
     model_config = {
         "json_schema_extra": {
             "examples": [
@@ -179,13 +201,13 @@ class DataSummaryResponse(BaseModel):
 
 class ConsumptionRecordResponse(BaseModel):
     """Response schema for individual consumption record."""
-    
+
     id: int
     household_id: int
     timestamp: datetime
     consumption_kwh: float
     country: Optional[str] = None
-    
+
     model_config = {
         "from_attributes": True,
         "json_schema_extra": {
