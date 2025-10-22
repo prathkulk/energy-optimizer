@@ -2,6 +2,7 @@ from pathlib import Path
 import sys
 import uvicorn
 from app.config import settings
+import os
 
 backend_dir = Path(__file__).parent
 sys.path.insert(0, str(backend_dir))
