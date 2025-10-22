@@ -2,7 +2,7 @@
 
 .env
 __pycache__/
-data/
+./data/
 backend/lib/
 PRD.md
 
