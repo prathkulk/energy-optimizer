@@ -1,12 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
+import { Slider } from "../../components/ui/slider";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { StrategyType, TOUParameters, DynamicParameters } from "@/lib/types";
+import { StrategyType, TOUParameters, DynamicParameters } from "../../lib/types";
 import { useState } from "react";
 
 interface StrategyConfigProps {

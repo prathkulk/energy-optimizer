@@ -6,11 +6,11 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
 import { Clock, TrendingUp, Zap } from "lucide-react";
-import { StrategyType } from "@/lib/types";
+import { StrategyType } from "../../lib/types";
 
 interface StrategySelectorProps {
 	selectedStrategy: StrategyType | null;

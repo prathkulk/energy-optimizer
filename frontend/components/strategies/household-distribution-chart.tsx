@@ -7,8 +7,8 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { HouseholdCost } from "@/lib/types";
+} from "../../components/ui/card";
+import { HouseholdCost } from "../../lib/types";
 import {
 	BarChart,
 	Bar,

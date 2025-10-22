@@ -6,8 +6,8 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { FairnessMetrics } from "@/lib/types";
+} from "../../components/ui/card";
+import { FairnessMetrics } from "../../lib/types";
 import {
 	RadarChart,
 	PolarGrid,

@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { OptimizationControls } from "@/components/optimization/optimization-controls";
-import { OptimizationResults } from "@/components/optimization/optimization-results";
+import { Button } from "../../components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { OptimizationControls } from "../../components/optimization/optimization-controls";
+import { OptimizationResults } from "../../components/optimization/optimization-results";
 import { ArrowLeft, AlertCircle, Lightbulb } from "lucide-react";
 import {
 	OptimizationPreset,
 	OptimizationRequest,
 	OptimizationResponse,
-} from "@/lib/types";
-import { getOptimizationPresets, runOptimization } from "@/lib/api";
+} from "../../lib/types";
+import { getOptimizationPresets, runOptimization } from "../../lib/api";
 
 export default function OptimizationPage() {
 	const [presets, setPresets] = useState<OptimizationPreset[]>([]);

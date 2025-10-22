@@ -6,18 +6,18 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
+import { Slider } from "../../components/ui/slider";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import {
 	OptimizationPreset,
 	OptimizationRequest,
 	OptimizationMode,
-} from "@/lib/types";
+} from "../../lib/types";
 import { useState } from "react";
 import { Info, Zap, TrendingUp, TrendingDown, Shield } from "lucide-react";
 

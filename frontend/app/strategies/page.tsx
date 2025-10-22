@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { StrategySelector } from "@/components/strategies/strategy-selector";
-import { StrategyConfig } from "@/components/strategies/strategy-config";
-import { StrategyResults } from "@/components/strategies/strategy-results";
+import { Button } from "../../components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { StrategySelector } from "../../components/strategies/strategy-selector";
+import { StrategyConfig } from "../../components/strategies/strategy-config";
+import { StrategyResults } from "../../components/strategies/strategy-results";
 import { ArrowLeft, AlertCircle } from "lucide-react";
-import { StrategyType, StrategyExecutionRequest, StrategyExecutionResponse } from "@/lib/types";
-import { executeStrategy } from "@/lib/api";
+import { StrategyType, StrategyExecutionRequest, StrategyExecutionResponse } from "../../lib/types";
+import { executeStrategy } from "../../lib/api";
 
 export default function StrategiesPage() {
   const [selectedStrategy, setSelectedStrategy] = useState<StrategyType | null>(null);

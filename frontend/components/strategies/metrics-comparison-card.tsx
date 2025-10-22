@@ -1,8 +1,8 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { StrategyExecutionResponse } from "@/lib/types";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { Badge } from "../../components/ui/badge";
+import { StrategyExecutionResponse } from "../../lib/types";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 interface MetricsComparisonCardProps {
