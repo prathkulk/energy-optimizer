@@ -126,8 +126,6 @@ export function OptimizationResults({ results }: OptimizationResultsProps) {
 					</div>
 				</CardContent>
 			</Card>
-			// Add this after the Optimization Summary card (around line 100):
-			{/* Cost Recovery Analysis */}
 			<Card>
 				<CardHeader>
 					<CardTitle>Cost Recovery Analysis</CardTitle>

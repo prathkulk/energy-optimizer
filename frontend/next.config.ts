@@ -1,7 +1,27 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+	output: "standalone",
 
-const nextConfig: NextConfig = {
-  /* config options here */
+	// Disable strict checks if needed (remove after fixing issues)
+	typescript: {
+		ignoreBuildErrors: false, // Set to true temporarily if needed
+	},
+	eslint: {
+		ignoreDuringBuilds: false, // Set to true temporarily if needed
+	},
+
+	// Image configuration
+	images: {
+		unoptimized: false,
+	},
+
+	// React strict mode
+	reactStrictMode: true,
+
+	// Environment variables validation (optional)
+	env: {
+		NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+	},
 };
 
-export default nextConfig;
+module.exports = nextConfig;
