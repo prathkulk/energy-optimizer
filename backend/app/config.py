@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     # CORS Settings
     cors_origins: List[str] = ["https://energy-optimizer.vercel.app", "http://localhost:3000", "http://localhost:3001"]
     cors_allow_credentials: bool = True
-    cors_allow_methods: List[str] = ["*"]
+    cors_allow_methods: List[str] = ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
     cors_allow_headers: List[str] = ["*"]
     cors_expose_headers: List[str] = ["*"]
     cors_max_age: int = 3600 
