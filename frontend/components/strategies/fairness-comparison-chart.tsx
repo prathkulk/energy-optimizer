@@ -15,9 +15,7 @@ import {
 	PolarRadiusAxis,
 	Radar,
 	ResponsiveContainer,
-	Legend,
 	Tooltip,
-	TooltipProps,
 } from "recharts";
 
 interface FairnessComparisonChartProps {
@@ -35,9 +33,9 @@ export function FairnessComparisonChart({
 		return ((max - value) / max) * 100;
 	};
 
-	const normalize = (value: number, min: number, max: number) => {
-		return ((value - min) / (max - min)) * 100;
-	};
+	// const normalize = (value: number, min: number, max: number) => {
+	// 	return ((value - min) / (max - min)) * 100;
+	// };
 
 	const chartData = [
 		{

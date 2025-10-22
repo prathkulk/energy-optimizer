@@ -13,7 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/ta
 import { OptimizationResponse } from "../../lib/types";
 import {
 	CheckCircle2,
-	AlertTriangle,
 	Clock,
 	TrendingUp,
 	Users,
@@ -44,6 +43,7 @@ export function OptimizationResults({ results }: OptimizationResultsProps) {
 
 	// Convert to StrategyExecutionResponse format for reusing components
 	const strategyFormatted = {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		strategy_type: "optimized" as any,
 		strategy_name: "MILP Optimized",
 		total_revenue: results.total_revenue,
@@ -338,6 +338,7 @@ export function OptimizationResults({ results }: OptimizationResultsProps) {
 				</CardContent>
 			</Card>
 			{/* Reuse Strategy Results Components */}
+			{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 			<MetricsComparisonCard results={strategyFormatted as any} />
 			{/* Tabs for Charts and Details */}
 			<Tabs defaultValue="charts" className="w-full">

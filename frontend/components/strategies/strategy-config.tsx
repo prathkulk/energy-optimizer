@@ -6,11 +6,12 @@ import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { Slider } from "../../components/ui/slider";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { StrategyType, TOUParameters, DynamicParameters } from "../../lib/types";
+import { StrategyType } from "../../lib/types";
 import { useState } from "react";
 
 interface StrategyConfigProps {
   strategyType: StrategyType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onExecute: (params: any) => void;
   isExecuting: boolean;
 }

@@ -1,4 +1,3 @@
-import { HealthStatus } from "@/components/home/health-status";
 import { Button } from "@/components/ui/button";
 import {
 	Card,

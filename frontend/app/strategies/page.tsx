@@ -17,6 +17,7 @@ export default function StrategiesPage() {
   const [results, setResults] = useState<StrategyExecutionResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleExecute = async (params: any) => {
     if (!selectedStrategy) return;
 
