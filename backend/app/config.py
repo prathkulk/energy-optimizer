@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     cors_allow_credentials: bool = True
     cors_allow_methods: List[str] = ["*"]
     cors_allow_headers: List[str] = ["*"]
+    cors_expose_headers: List[str] = ["*"]
+    cors_max_age: int = 3600 
 
     # Database Settings
     database_url: str = os.getenv("DATABASE_URL")
