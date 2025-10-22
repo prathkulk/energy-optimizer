@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     debug: bool = False
     
     # CORS Settings
-    cors_origins: List[str] = ["https://energy-optimizer.vercel.app/", "http://localhost:3000", "http://localhost:3001"]
+    cors_origins: List[str] = ["https://energy-optimizer.vercel.app", "http://localhost:3000", "http://localhost:3001"]
     cors_allow_credentials: bool = True
     cors_allow_methods: List[str] = ["*"]
     cors_allow_headers: List[str] = ["*"]
